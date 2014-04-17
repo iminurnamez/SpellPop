@@ -1,7 +1,7 @@
 import os
 import json
 import pygame as pg
-#from .components import players
+
 
 class Control(object):
     def __init__(self, caption):
@@ -85,8 +85,8 @@ class _State(object):
     def get_event(self, event):
         pass
 
-    def startup(self, persistant):
-        self.persist = persistant
+    def startup(self, persistent):
+        self.persist = persistent
 
     def cleanup(self):
         self.done = False
@@ -97,7 +97,7 @@ class _State(object):
 
 
 
-### Resource loading functions.
+
 def load_all_gfx(directory,colorkey=(0,0,0),accept=(".png",".jpg",".bmp")):
     graphics = {}
     for pic in os.listdir(directory):

@@ -16,7 +16,7 @@ class SpellPop(tools._State):
         self.ticks = 1
         self.word_freq = 100
         
-    def startup(self, persistant):
+    def startup(self, persistent):
         self.screen_rect = pg.display.get_surface().get_rect()
         self.word_freq = 100
         self.words = []

@@ -3,7 +3,8 @@ import pygame as pg
 from .. import prepare
 
 class Word(object):
-    colors = ["blue", "lightblue", "red", "yellow", "green", "purple"]
+    colors = ["lightblue", "red", "yellow", "green", "purple", "orange",
+                  "darkgreen", "dodgerblue2"]
     def __init__(self, centerpoint, veracity, word):
         self.color = choice(self.colors)
         self.veracity = veracity
