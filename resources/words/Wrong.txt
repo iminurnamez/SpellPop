@@ -6,6 +6,7 @@ apparantly
 appearence
 arguement
 assasination
+asassination
 basicly
 begining
 beleive
@@ -49,7 +50,7 @@ interupt
 irresistable
 knowlege
 liason
-millenium
+milenium
 neccessary
 neccesary
 noticable
@@ -59,7 +60,6 @@ occurance
 occurence
 pavillion
 persistant
-pharoah
 peice
 politican
 posession

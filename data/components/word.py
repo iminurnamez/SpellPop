@@ -27,12 +27,12 @@ class Word(object):
         self.rect = self.text.get_rect(center=self.rect.center)
         
     def explode(self):
-        w = self.rect.w / 4
+        w = self.rect.w / 2
         h = self.rect.h / 2
         
         self.surfs = []
         for j in range(2):
-            for i in range(4):
+            for i in range(2):
                 r = pg.Rect((i * w), (j * h), w, h) 
                 surf = self.text.subsurface(r)
                 loc = (r.centerx + self.rect.left, r.centery + self.rect.top) 

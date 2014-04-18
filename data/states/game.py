@@ -13,18 +13,26 @@ class SpellPop(tools._State):
         self.next = "SCORESCREEN"
         self.words = []
         self.score = 0
+        self.high_score = 0
         self.ticks = 1
         self.word_freq = 100
         
     def startup(self, persistent):
         self.screen_rect = pg.display.get_surface().get_rect()
-        self.word_freq = 100
+        self.level = persistent["level"]
+        freqs = {"Easy": 130,
+                     "Normal": 100,
+                     "Hard": 80,
+                     "Grammar Nazi": 60}
+        self.word_freq = freqs[self.level]
         self.words = []
         self.score = 0
+        self.high_score = 0
         self.ticks = 1
         
     def get_event(self, event):
         if event.type == pg.QUIT:
+            self.persist["high score"] = self.high_score
             self.done = True
         elif event.type == pg.MOUSEBUTTONDOWN:
             for word in self.words:
@@ -37,14 +45,14 @@ class SpellPop(tools._State):
             self.score += 1
             prepare.SFX["goodpop"].play()
         else:
-            self.score -= 1
+            self.score -= 3
             prepare.SFX["badpop"].play()
         word.explode()
         
     def add_word(self):
         veracity = choice(("Correct", "Wrong", "Wrong", "Wrong")) 
         w, h = self.screen_rect.size
-        margin = 20
+        margin = 60
         center_point = (randint(margin, w - margin), randint(margin, h - margin))
         
         new_word = Word(center_point, veracity, choice(prepare.WORDS[veracity]))
@@ -68,7 +76,7 @@ class SpellPop(tools._State):
                 if word.rect.colliderect(other.rect):
                     if word.veracity == "Correct" and other.veracity == "Correct":
                         self.score += 2
-                        prepare.SFX["goodpop"].play
+                        prepare.SFX["goodpop"].play()
                     else:
                         self.score -= 2
                         prepare.SFX["badpop"].play()                        
@@ -80,10 +88,10 @@ class SpellPop(tools._State):
         self.words = [x for x in self.words if not x.done] 
         if not self.ticks % self.word_freq:
             self.add_word()
-                 
-                
+        if not self.ticks % 1200 and self.word_freq > 10:        
+            self.word_freq -= 10    
         self.score = max((self.score, 0))
-        
+        self.high_score = max((self.score, self.high_score))
         
         self.draw(surface)
         self.ticks += 1
@@ -94,6 +102,7 @@ class SpellPop(tools._State):
             word.draw(surface)
         score_text = self.font.render("{}".format(self.score), True,
                                                    pg.Color("white"), pg.Color("black"))
+        score_text.set_colorkey(pg.Color("black"))
         score_rect = score_text.get_rect(topright=self.screen_rect.topright)
         surface.blit(score_text, score_rect)
         
