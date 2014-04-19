@@ -23,7 +23,7 @@ class SpellPop(tools._State):
         freqs = {"Easy": 130,
                      "Normal": 100,
                      "Hard": 80,
-                     "Grammar Nazi": 60}
+                     "Even Harder": 60}
         self.word_freq = freqs[self.level]
         self.words = []
         self.score = 0
