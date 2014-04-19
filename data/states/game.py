@@ -106,7 +106,3 @@ class SpellPop(tools._State):
         score_text.set_colorkey(pg.Color("black"))
         score_rect = score_text.get_rect(topright=self.screen_rect.topright)
         surface.blit(score_text, score_rect)
-        
-        
-if __name__ == "__main__":
-    main(800, 800, 60)

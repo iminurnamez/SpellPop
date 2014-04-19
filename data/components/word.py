@@ -66,7 +66,8 @@ class Word(object):
                 for surf in self.surfs:
                     dx = surf[1].centerx - self.rect.centerx
                     dy = surf[1].centery - self.rect.centery
-                    surf[1].move_ip(cmp(dx, 0) * 2, cmp(dy, 0) * 2)
+                    #surf[1].move_ip(cmp(dx, 0) * 2, cmp(dy, 0) * 2)    # no good for python 3
+                    surf[1].move_ip(((dx > 0) - (dx < 0)) * 2, ((dy > 0) - (dy < 0)) * 2)
                 self.explosion_ticks -= 1
             else:
                 self.done = True
