@@ -31,7 +31,8 @@ class SpellPop(tools._State):
         self.ticks = 1
         
     def get_event(self, event):
-        if event.type == pg.QUIT:
+        if event.type == pg.QUIT or (event.type == pg.KEYDOWN and
+                                                    event.key == pg.K_ESCAPE):
             self.persist["high score"] = self.high_score
             self.done = True
         elif event.type == pg.MOUSEBUTTONDOWN:

@@ -17,3 +17,6 @@ Collisions:
 +2 if both are correctly spelled
 
 -2 if either is misspelled
+
+F to toggle fullscreen
+ESC or Close to exit
